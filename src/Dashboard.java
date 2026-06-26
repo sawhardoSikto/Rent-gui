@@ -1,55 +1,40 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 
-public class Dashboard implements ActionListener
-{
+public class Dashboard implements ActionListener {
 
-
-
-    //labels
+    // labels
     JLabel totalRent;
 
-
-
-    //textfields
+    // textfields
     JTextField totalRenttxtf;
 
-
-    //textarea
+    // textarea
     JTextArea display;
 
-    //buttons
+    // buttons
     JButton proceed;
 
-
-    //imageIcon
+    // imageIcon
     ImageIcon i1;
 
-
-
-    //frame
+    // frame
     JFrame frame;
-    Dashboard()
-    {
-        frame = new JFrame ("Dashboard");
 
-        //construct components
-        totalRent = new JLabel ("Total Rent:");
+    Dashboard() {
+        frame = new JFrame("Dashboard");
+
+        // construct components
+        totalRent = new JLabel("Total Rent:");
         totalRent.setForeground(new Color(230, 238, 250));
 
+        totalRenttxtf = new JTextField();
 
-
-
-
-        totalRenttxtf = new JTextField ();
-
-
-        display = new JTextArea (5, 5);
+        display = new JTextArea(5, 5);
 
         proceed = new JButton("Proceed");
-
 
         i1 = new ImageIcon("download.png");
 
@@ -60,107 +45,82 @@ public class Dashboard implements ActionListener
         frame.add(display);
         frame.add(proceed);
 
+        totalRent.setBounds(35, 70, 100, 25);
 
-        totalRent.setBounds (35, 70, 100, 25);
+        totalRenttxtf.setBounds(155, 70, 100, 25);
 
-
-        totalRenttxtf.setBounds (155, 70, 100, 25);
-
-
-        display.setBounds (35, 180, 380, 300);
+        display.setBounds(35, 180, 380, 300);
 
         proceed.setBounds(355, 70, 120, 30);
 
-
-        //add action listener
+        // add action listener
         proceed.addActionListener(this);
 
-
-        frame.setSize (880, 550);
-        frame.setLocationRelativeTo(null);//to center screen gui
-        frame.setLayout (null);
-        frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+        frame.setSize(880, 550);
+        frame.setLocationRelativeTo(null);// to center screen gui
+        frame.setLayout(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setIconImage(i1.getImage());
-        frame.getContentPane().setBackground(new Color (186, 132, 189));//setting a background color
+        frame.getContentPane().setBackground(new Color(186, 132, 189));// setting a background color
         frame.setResizable(false);
-        frame.setVisible (true);
-
-
-
-
-
+        frame.setVisible(true);
 
     }
 
-    //procedd button
-    public void actionPerformed(ActionEvent e)
-    {
-        if (e.getSource()==proceed)
-        {
+    // procedd button
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == proceed) {
 
-          String rent=totalRenttxtf.getText();
-          double rentDouble=Rent.convertToDouble(rent);
+            String rent = totalRenttxtf.getText();
+            double rentDouble = Rent.convertToDouble(rent);
 
+            if (rent.isEmpty() == false) {
 
-            if (rent.isEmpty()==false )
-            {
-
-                Rent r1=new Rent();
-                Rent r2=new Rent();
-                Rent r3=new Rent();
-                Rent r4=new Rent();
+                Rent r1 = new Rent();
+                Rent r2 = new Rent();
+                Rent r3 = new Rent();
+                Rent r4 = new Rent();
                 r1.setName("Sikto & Bikash");
                 r1.setTotalcost(rentDouble);
-                r1.set(3875,700,150);
-                //r1.print(display);
-                System.out.println("*********************");
-                r2.setName("Faysal");
+                r1.set(3875 + 250, 800, 150);
+                // r1.print(display);
+
+                r2.setName("Sajal & Redip");
                 r2.setTotalcost(rentDouble);
-                r2.set(3375*2,700,150);
+                r2.set(3375 + 250, 800, 150);
 
-//                r2.print(display);
-                System.out.println("*********************");
-                r3.setName("Shanto & soham");
+                // r2.print(display);
+
+                r3.setName("Shanto & Soham");
                 r3.setTotalcost(rentDouble);
-                r3.set(3250,700,150);
-//                r3.print(display);
-                System.out.println("*********************");
-                r4.setName("sajal & tanvir");
-                r4.setTotalcost(rentDouble);
-                r4.set(2000,700,150);
-//                r4.print(display);
+                r3.set(3250 + 250, 800, 150);
+                // r3.print(display);
 
-                String printStr = r1.getName()+"\n" +
-                        "Total Cost :"+ Rent.decfor.format(r1.getSum())+"\n" +
+                r4.setName("Proshanta");
+                r4.setTotalcost(rentDouble);
+                r4.set(2500, 800, 150);
+                // r4.print(display);
+
+                String printStr = r1.getName() + "\n" +
+                        "Total Cost :" + Rent.decfor.format(r1.getSum()) + "\n" +
                         "*********************\n" +
-                        r2.getName()+"\n" +
-                        "Total Cost :"+ Rent.decfor.format(r2.getSum())+"\n" +
+                        r2.getName() + "\n" +
+                        "Total Cost :" + Rent.decfor.format(r2.getSum()) + "\n" +
                         "*********************\n" +
-                        r3.getName()+"\n" +
-                        "Total Cost :"+ Rent.decfor.format(r3.getSum())+"\n" +
+                        r3.getName() + "\n" +
+                        "Total Cost :" + Rent.decfor.format(r3.getSum()) + "\n" +
                         "*********************\n" +
-                        r2.getName()+"\n" +
-                        "Total Cost :"+ Rent.decfor.format(r4.getSum())+"\n";
+                        r4.getName() + "\n" +
+                        "Total Cost :" + Rent.decfor.format(r4.getSum()) + "\n";
 
                 display.setText(printStr);
 
-
-            }
-            else {
-                JOptionPane.showMessageDialog(null,"please add your courses");
+            } else {
+                JOptionPane.showMessageDialog(null, "please add your courses");
             }
 
         }
-
-
-
-        }
-
 
     }
 
-
-
-
-
-
+}
